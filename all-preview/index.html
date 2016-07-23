@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<title>js图片上传预览</title>
+<script>
+function PreviewImage(imgFile)
+{
+    var filextension=imgFile.value.substring(imgFile.value.lastIndexOf("."),imgFile.value.length);
+    filextension=filextension.toLowerCase();
+    if ((filextension!='.jpg')&&(filextension!='.gif')&&(filextension!='.jpeg')&&(filextension!='.png')&&(filextension!='.bmp'))
+    {
+        alert("对不起，系统仅支持标准格式的照片，请您调整格式后重新上传，谢谢 !");
+        imgFile.focus();
+    }
+    else
+    {
+        var path;
+        if(document.all)//IE
+        {
+            imgFile.select();
+            path = document.selection.createRange().text;
+            document.getElementById("imgPreview").innerHTML="";
+            document.getElementById("imgPreview").style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='scale',src=\"" + path + "\")";//使用滤镜效果    
+
+            // var x= new ActiveXObject("Msxml2.XMLHTTP.6.0");
+            // x.onreadystatechange=function(){
+            //     if(x.readyState<4)return;
+            //     var xml_dom = new ActiveXObject("MSXML2.DOMDocument"); 
+            //     var tmpNode = xml_dom.createElement("tmpNode"); 
+            //     tmpNode.dataType = "bin.base64"; 
+            //     tmpNode.nodeTypedValue = x.responseBody; 
+            //     base64string=tmpNode.text.replace(/\n/g,"");
+            //     document.write("<img src=\"data:image/bmp;base64,"+base64string+"\">")
+
+            //     alert(base64string);
+
+            // }
+            // x.open("post",'http://images.blogjava.net/blogjava_net/emu/1359/o_emu120.jpg',true);
+            // x.send("");  
+        }
+        else//FF
+        {
+            path=window.URL.createObjectURL(imgFile.files[0]);// FF 7.0以上
+            //path = imgFile.files[0].getAsDataURL();// FF 3.0
+            document.getElementById("imgPreview").innerHTML = "<img id='img1' width='120px' height='100px' src='"+path+"'/>";
+            //document.getElementById("img1").src = path;
+        }
+    }
+}
+</script>
+</head>
+<body>
+<input type="file" onchange='PreviewImage(this)' />
+<br />
+<div id="imgPreview" style='width:120px; height:100px;'>
+    <img id="img1" src="" width="120" height="100" />
+</div>
+</body>
+</html>

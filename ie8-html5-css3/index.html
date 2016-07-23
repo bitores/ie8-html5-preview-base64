@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style type="text/css">
+    body {
+        background: #444;
+        color: #FFF;
+        font-family: Helvetica, Arial, sans-serif;
+        text-align: center;
+    }
+    
+    #cv {
+        width: 600px;
+        height: 400px;
+        background: #000;
+        border-radius: 20px;
+        padding: 20px;
+        margin: 20px auto;
+        box-shadow: 0 0 40px #222;
+        behavior: url(public/ie-css3.htc);
+    }
+    </style>
+    <!--[if IE]>
+      <script type="text/javascript" src="public/html5.js"></script>
+  <![endif]-->
+    <script type="text/javascript">
+    window.onload = function() {
+        var ctx = document.getElementById("cv").getContext("2d");
+
+        ctx.fillStyle = "#aa0000";
+        ctx.beginPath();
+        ctx.arc(100, 100, 25, 0, Math.PI * 2, true);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    </script>
+</head>
+
+<body>
+    <canvas id="cv"></canvas>
+</body>
+
+</html>
