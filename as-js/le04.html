@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>le0</title>
+	<script src="swfobject.js"></script>
+	<script>
+		function changeImg(){
+			alert("flash call js");
+		}
+	   var flashvars = {
+	      jsFun:"changeImg"
+	   };
+	   var params = {
+	      menu: "false",
+	      scale: "noScale",
+	      allowFullscreen: "true",
+	      allowScriptAccess: "always",
+	      bgcolor: "#F8F8F8",
+	      wmode: "window"
+	   };
+	   var attributes = {
+	      id:"jack"
+	   };
+	   
+	   swfobject.embedSWF(
+	      "click.swf", 
+	      "altContent", "100%", "100%", "10.0.0", 
+	      "expressInstall.swf", 
+	      flashvars, params, attributes);
+	</script>
+</head>
+<body>
+	<div id="altContent"></div>
+	<button id="btn">按钮</button>
+	<script type="text/javascript">
+		btn.onclick = function(){
+			alert(window.jack.helloas());
+
+			// ----as
+			// import flash.external.ExternalInterface;// required
+
+			// function hello():String{  
+			//     return "js call flash~~";  
+			// } 
+			// //允许js调用flash中的函数 参数1：要调用flash函数的js函数，参数2：被调用flash函数  
+			// ExternalInterface.addCallback("helloas",this,hello);
+			// ExternalInterface.call("changeImg");
+		}
+	</script>
+</body>
+</html>
